@@ -1,1 +1,1 @@
-npm install pkg
+npm install -g pkg
