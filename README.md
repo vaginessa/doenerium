@@ -33,7 +33,7 @@
 - Download the files
 - Install [NodeJS](https://nodejs.org/en/download/)
 - Install the required packages by running `install.bat`
-- Edit the `config.js` file and put your webhooks in ir
+- Edit the `config.js` file and put your webhooks in it
 - Run the `build.bat` file and an .exe file named `index-win.exe` will be created
 - Spread the stealer and enjoy my fully undetected stealer :flushed:
 
