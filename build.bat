@@ -1,1 +1,3 @@
-pkg "./index.js"
+npm install pkg
+
+pkg index.js
