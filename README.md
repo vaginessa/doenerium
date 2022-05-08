@@ -58,6 +58,7 @@ https://www.virustotal.com/gui/file/06d2ab510cfb2716c835897e5b8ea7509e8d4ff24b36
 - Exodus wallet injection (get the password whenever the user logs in the wallet)
 - More grabbers (VPN's, Gaming, Messengers)
 - Keylogger
+- Growtopia stealer
 - Discord bot to build within discord ($build <webhook_url>)
 
 ### Inspirations
