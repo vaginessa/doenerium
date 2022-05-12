@@ -1,1 +1,1 @@
-pkg index.js
+call pkg .

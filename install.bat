@@ -1,2 +1,4 @@
-npm install
-npm install pkg
+echo off
+
+call npm install .
+call npm install node-gyp
