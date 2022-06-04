@@ -12,7 +12,7 @@
 </p>
 
 ## Information:
-- [New Discord]([https://discord.gg/AhYbnQbuqU](https://discord.gg/eYQYJhWcPa))
+- [Discord]([https://discord.gg/AhYbnQbuqU](https://discord.gg/eYQYJhWcPa))
 
 ## Features
 - Fully undetected (0/65 detects)
