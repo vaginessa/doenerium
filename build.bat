@@ -1,1 +1,1 @@
-call pkg .
+pkg .

