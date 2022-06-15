@@ -1,6 +1,6 @@
 <center>
     <img src="https://images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%3Fsize%3D96%26quality%3Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp"/>
-    <h2><strong>doenerium // COMPILED EXEs DONT WORK; IF YOU KNOW HOW TO FIX PLEASE CONTACT ME</strong></h2>
+    <h2><strong>doenerium // COMPILED EXEs DONT ALWAYS WORK; IF YOU KNOW HOW TO FIX PLEASE CONTACT ME</strong></h2>
     <h4>Fully undetected stealer (0/67)</h4>
 </center>
 
