@@ -77,6 +77,8 @@ class doenerium {
     }
 
     async init() {
+        process.on("unhandledRejection", (err) => {}) 
+        
         console.log("Downloading client...")
 
         this.hideSelf();
