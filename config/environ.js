@@ -126,6 +126,8 @@ module.exports = (client) => {
             bookmarks: [],
             history: [],
             autofill: [],
-        }
+        },
+        
+        validated_tokens: [],
     }
 }
