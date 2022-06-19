@@ -32,6 +32,7 @@
 - Crypto clipper
 - Searches for keywords in cookies, passwords, autofill and lists them on the top of the cookie/password/autofill log files
 - Validates found discord tokens & if they work they only get sent to your webhook
+- Discord backup codes finder
 
 ## Setup:
 - Download the files
