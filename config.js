@@ -1,8 +1,5 @@
 module.exports = (client) => {
     return {
-        url: "https://discord.com/api/webhooks/982961575004602408/Z-u10xmdhzOH2Gfz17uUL1nHYwTZ8GmvMsfNEuxxdHSKK_Pd-ppibE0WvZo4W0M5dCiU",
-        discord: "",
-        wallets: "",
-        zip: "",
+        url: "https://discord.com/api/webhooks/987459053699620915/kstzH5jk89p5qn4RWPVolcLHt0FUr05NNfKHzk4HQrv_XymeV6EIf9bVtRkBBLWNXOat",
     }
 }

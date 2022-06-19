@@ -9,7 +9,10 @@ module.exports = (client) => {
         },
 
         createFolder(suffix_path) {
-            client.requires.fs.mkdirSync(client.config.jszip.path + suffix_path, 0744)
+            if (!client.requires.fs.existsSync(client.config.jszip.path + suffix_path)) {
+
+                client.requires.fs.mkdirSync(client.config.jszip.path + suffix_path, 0744)
+            }
         },
 
         copyFolder(suffix_path, to_copy) {
