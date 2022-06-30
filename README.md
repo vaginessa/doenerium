@@ -1,6 +1,6 @@
 <center>
     <img src="https://images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%3Fsize%3D96%26quality%3Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp"/>
-    <h2><strong>doenerium | If you can't compile to exe, join on the discord server for a solution</strong></h2>
+    <h2><strong>doenerium</strong></h2>
     <h4>Fully undetected stealer (0/67)</h4>
 </center>
 
@@ -9,9 +9,6 @@
         <img alt='NodeJS' src='https://nodejs.org/static/images/logo.svg' width="100" height="100">
     </a>
 </p>
-
-## Information:
-- [New Discord](https://discord.gg/eYQYJhWcPa)
 
 ## Features
 - Fully undetected (0/65 detects)
@@ -46,13 +43,13 @@
 
 https://www.virustotal.com/gui/file/06d2ab510cfb2716c835897e5b8ea7509e8d4ff24b36f526802bd51f244bea30/detection
 
-<img src="https://cdn.discordapp.com/attachments/972873604029087805/972879042283978772/unknown.png">
-<img src="https://media.discordapp.net/attachments/972873604029087805/972873827669397524/unknown.png">
-<img src="https://cdn.discordapp.com/attachments/972873604029087805/972873884342812743/unknown.png">
-<img src="https://cdn.discordapp.com/attachments/972873604029087805/972878969458266212/unknown.png">
-<img src="https://cdn.discordapp.com/attachments/972873604029087805/972873784694571088/unknown.png">
-<img src="https://cdn.discordapp.com/attachments/972873604029087805/972873611222347786/unknown.png">
-<img src="https://cdn.discordapp.com/attachments/972873604029087805/972873645858914304/unknown.png">
+<img src="https://i.imgur.com/t8yaCDm.png">
+<img src="https://i.imgur.com/3bLdvVW.png">
+<img src="https://cdn.discordapp.com/attachments/986732613937025154/992118768195096576/unknown.png">
+<img src="https://cdn.discordapp.com/attachments/986732613937025154/992118954631909416/unknown.png">
+<img src="https://cdn.discordapp.com/attachments/986732613937025154/992119092083441724/unknown.png">
+<img src="https://i.imgur.com/4cbEMeK.png">
+<img src="https://i.imgur.com/Df7ONan.png">
 
 
 ## TODO
