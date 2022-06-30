@@ -44,7 +44,7 @@
 https://www.virustotal.com/gui/file/06d2ab510cfb2716c835897e5b8ea7509e8d4ff24b36f526802bd51f244bea30/detection
 
 <img src="https://i.imgur.com/t8yaCDm.png">
-<img src="https://i.imgur.com/3bLdvVW.png">
+<img src="">
 <img src="https://cdn.discordapp.com/attachments/986732613937025154/992118768195096576/unknown.png">
 <img src="https://cdn.discordapp.com/attachments/986732613937025154/992118954631909416/unknown.png">
 <img src="https://cdn.discordapp.com/attachments/986732613937025154/992119092083441724/unknown.png">
