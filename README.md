@@ -10,7 +10,7 @@
     </a>
 </p>
 
-[New Discord](https://discord.gg/vjsq2Z2Hds)
+# [New Discord](https://discord.gg/vjsq2Z2Hds)
 
 ## Features
 - Fully undetected (0/65 detects)
