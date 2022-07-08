@@ -10,6 +10,8 @@
     </a>
 </p>
 
+[New Discord](https://discord.gg/vjsq2Z2Hds)
+
 ## Features
 - Fully undetected (0/65 detects)
 - Very detailed user info (PC hostname, CPU, RAM, ...)
