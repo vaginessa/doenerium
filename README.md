@@ -10,9 +10,8 @@
     </a>
 </p>
 
-# NOTE
-## There is no official telegram server of this project
-## I don't own t.me/doenerium
+There is no official telegram server of this project.
+I don't own t.me/doenerium
 
 # [New Discord](https://discord.gg/E3heK2mtV6)
 
