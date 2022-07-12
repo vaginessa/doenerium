@@ -1,6 +1,6 @@
 <a id="top"></a>
 
-# 
+#
 
 <h1 align="center">
 ⚔️ Doenerium 🛡️
@@ -22,7 +22,7 @@
 <img src="https://img.shields.io/discord/995072028145098803?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
 </p>
 
-## 🌐〢Content
+## 🌐 〢 Content
 
 - [⚔️ Features](#features)
 - [📸 Screenshots](#screenshot)
@@ -40,12 +40,12 @@
 #### Stealer
 
 > Discord Token
-> 
+>
 > Discord Info - Username, Phone number, Email, Billing, Nitro Status & Backup Codes
-> 
+>
 > Discord Friends with rare badges
-> 
-> Grabs crypto wallets - 
+>
+> Grabs crypto wallets -
 > 💸 Zcash
 > 🚀 Armory
 > 📀 Bytecoin
@@ -56,31 +56,32 @@
 > 🕹️ AtomicWallet
 > 💹 Guarda
 > ⚡ Coinomi
-> 
-> Browser (Chrome, Opera, Firefox, OperaGX, Edge, Brave, Yandex) - 
+>
+> Browser (Chrome, Opera, Firefox, OperaGX, Edge, Brave, Yandex) -
 > Passwords, Cookies, Autofill & History (Searches for specific keywords such as PayPal, Coinbase etc. in them)
-> 
-> Screenshot
-> 
+>
+> Screenshot(s)
+>
 > Injects itself to discord to grab token when changed
 
 #### Additional
 
 > Crypto Clipper - BTC, LTC, XMR, ETH, XRP, NEO, BCH, DOGE, DASH, XLM
-> 
+>
 > Ultra Obfuscation (use https://obfuscator.io)
-> 
+>
 > Anti-Debug
-> 
+>
 > Anti-VM
-> 
+>
 > Validates a found discord token and then sends it to your discord webhook
-> 
+>
 > Sends all files to your discord webhook in beautiful embeds and a structured zip file
 
 <a id="screenshot"></a>
 
 ---
+
 ### 📸 〢 Screenshots
 
 <img title="" src="https://github.com/doener2323/doenerium/blob/doener/screenshots/1.png?raw=true" alt="" width="450"><img title="" src="https://github.com/doener2323/doenerium/blob/doener/screenshots/2.png?raw=true" alt="" width="439">![](https://github.com/doener2323/doenerium/blob/doener/screenshots/3.png?raw=true)
@@ -88,22 +89,24 @@
 <a id="setup"></a>
 
 ---
-### 📁 〢 Setting Up
+
+### 📁  〢 Setting Up
 
 > Install [Node.js](https://nodejs.org/en/download/)
-> 
+>
 > Install [Visual studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSFeaturesPage&passive=true&tailored=cplus&cid=2031#cplusplus) with C++ compilers and all enabled (is a bit gigs but u wont have erros)
-> 
-> Run ***install.bat*** file to install all necessary files
-> 
-> Replace *WEBHOOK* with your webhook in ***config.js***
-> 
-> Run ***build.bat*** and wait for ***doenerium-win.exe*** to be built.
+>
+> Run **_install.bat_** file to install all necessary files
+>
+> Replace _WEBHOOK_ with your webhook in **_config.js_**
+>
+> Run **_build.bat_** and wait for **_doenerium-win.exe_** to be built.
 
 <a id="todo"></a>
 
 ---
-### 📝〢 Todo
+
+### 📝 〢 Todo
 
 > - ~~Exodus wallet injection (get the password whenever the user logs in the wallet)~~
 > - More grabbers (VPN's, Gaming, Messengers)
@@ -115,6 +118,7 @@
 <a id="license"></a>
 
 ---
+
 ### 📜 〢 License
 
 By downloading this, you agree to the Commons Clause license and that you're not allowed to sell this repository or any code from this repository. For more info see [commonsclause](https://commonsclause.com/)
@@ -122,12 +126,16 @@ By downloading this, you agree to the Commons Clause license and that you're not
 <a id="note"></a>
 
 ---
-### ⚠️〢 Note
+
+### ⚠️ 〢 Note
+
+There is no official telegram server of this project.
+I don't own t.me/doenerium
 
 I am not responsible for any damages this software may cause. This was made for personal education.
 
 ### Credits
+
 Credits to Pandoric / PandoricGalaxy for creating this beautiful README file
 
 <p align="center"><a href=#top>Back to Top</a></p>
-
