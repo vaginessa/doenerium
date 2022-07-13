@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  ## (Join the Discord)[https://discord.gg/E3heK2mtV6]
+  [Join the Discord](https://discord.gg/E3heK2mtV6)
  </p>
 
 ## 🌐 〢 Content
