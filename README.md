@@ -22,6 +22,10 @@
 <img src="https://img.shields.io/discord/995072028145098803?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
 </p>
 
+<p align="center">
+  ## (Join the Discord)[https://discord.gg/E3heK2mtV6]
+ </p>
+
 ## 🌐 〢 Content
 
 - [⚔️ Features](#features)
