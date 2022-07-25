@@ -118,6 +118,8 @@
 > - Growtopia stealer
 > - Discord bot to build within discord ($build <webhook_url>)
 > - Dynamic encryption
+> - Automatic obfuscation when building
+> - Firefox stealer
 
 <a id="license"></a>
 
