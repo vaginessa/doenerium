@@ -120,6 +120,7 @@
 > - Dynamic encryption
 > - Automatic obfuscation when building
 > - Firefox stealer
+> - Fix browser history 
 > - Make it so it won't build with node-18 for less file size
 
 <a id="license"></a>
