@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/discord/995072028145098803?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
+<img src="https://img.shields.io/discord/1001788159123783751?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
 </p>
 
 <p align="center">
