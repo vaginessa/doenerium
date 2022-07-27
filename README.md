@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  discord got termed ^
+  New Discord: https://discord.gg/6T4RZdkA8E
  </p>
 
 ## 🌐 〢 Content
