@@ -19,11 +19,11 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/discord/1001788159123783751?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
+<img src="https://img.shields.io/discord/1009189978087100486?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
 </p>
 
 <p align="center">
-  New Discord: https://discord.gg/6T4RZdkA8E
+  New Discord, old one got termed: https://discord.gg/8CDzzjbYVD
  </p>
 
 ## 🌐 〢 Content
