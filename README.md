@@ -3,7 +3,7 @@
 #
 
 <h1 align="center">
-⚔️ Doenerium (negro) 🛡️
+⚔️ Doenerium 🛡️
 </h1>
 
 <p align="center"> 
