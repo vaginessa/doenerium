@@ -5,7 +5,7 @@
     "discord-webhook-node": "^1.1.8",
     "javascript-obfuscator": "^4.0.0",
     "nexe-natives-fix": "^1.0.1",
-    "node-gyp": "^9.0.0",
+    "node-gyp": "^9.1.0",
     "node-resourcehacker": "^1.2.1",
     "request": "^2.88.2",
     "screenshot-desktop": "^1.12.7",

