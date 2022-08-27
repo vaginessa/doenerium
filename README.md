@@ -102,7 +102,7 @@
 > 
 > IMPORTANT: When installing Node.js also install "Tools for Native Modules" => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 > 
-> This will take a few minutes because it will install up to 2 GB of data
+> This will take a few minutes because it will download up to 2 GB of data
 >
 > Run **_install.bat_** file to install all necessary files
 >
