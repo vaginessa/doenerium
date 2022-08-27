@@ -43,6 +43,8 @@
 
 #### Stealer
 
+> Autostart (Startup)
+>
 > Discord Token
 >
 > Discord Info - Username, Phone number, Email, Billing, Nitro Status & Backup Codes
@@ -70,8 +72,6 @@
 
 #### Additional
 
-> Crypto Clipper - BTC, LTC, XMR, ETH, XRP, NEO, BCH, DOGE, DASH, XLM
->
 > Ultra Obfuscation (use https://obfuscator.io)
 >
 > Anti-Debug
