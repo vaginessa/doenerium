@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  [New discord server](https://discord.gg/8CDzzjbYVD)
-  [Join the telegram server/community](https://t.me/doenerium)
+  New discord: https://discord.gg/8CDzzjbYVD
+  Telegram server: https://t.me/doenerium
  </p>
 
 ## 🌐 〢 Content
