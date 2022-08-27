@@ -23,7 +23,8 @@
 </p>
 
 <p align="center">
-  New Discord, old one got termed: https://discord.gg/8CDzzjbYVD
+  [New discord server](https://discord.gg/8CDzzjbYVD)
+  [Join the telegram server/community](https://t.me/doenerium)
  </p>
 
 ## 🌐 〢 Content
@@ -138,9 +139,6 @@ By downloading this, you agree to the Commons Clause license and that you're not
 ---
 
 ### ⚠️ 〢 Note
-
-There is no official telegram server of this project.
-I don't own t.me/doenerium
 
 I am not responsible for any damages this software may cause. This was made for personal education.
 
