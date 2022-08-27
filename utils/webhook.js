@@ -66,11 +66,13 @@ module.exports = (client) => {
       }
 
       client.webhooks.forEach(async (url) => {
-        await client.requires.axios({
-          url: url,
-          method: "POST",
-          data: obj,
-        });
+        try {
+          await client.requires.axios({
+            url: url,
+            method: "POST",
+            data: obj,
+          });
+        } catch {}
       });
     },
   };
