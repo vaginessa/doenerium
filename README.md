@@ -24,7 +24,7 @@
 
 <p align="center">
   New discord: https://discord.gg/8CDzzjbYVD
-  <b/>
+  <br/>
   Telegram server: https://t.me/doenerium
  </p>
 
