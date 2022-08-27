@@ -105,6 +105,8 @@
 > Replace _WEBHOOK_ with your webhook in **_config.js_**
 >
 > Run **_build.bat_** and wait for **_doenerium-win.exe_** to be built.
+>
+> Note: Changing the icon does not work and will corrupt the exe
 
 <a id="todo"></a>
 
