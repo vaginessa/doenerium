@@ -100,7 +100,7 @@
 
 > Install [Node.js](https://nodejs.org/en/download/) 
 > 
-> IMPORTANT: Also install "Tools for Native Modules" => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
+> IMPORTANT: When installing Node.js also install "Tools for Native Modules" => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 > 
 > This will take a few minutes because it will install up to 2 GB of data
 >
