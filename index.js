@@ -339,4 +339,4 @@ async function hideSelf() {
   }
 
   new doenerium().init();
-})();
+})(); 
