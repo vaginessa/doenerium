@@ -30,9 +30,9 @@
 
 ## 🌐 〢 Content
 
+- [📁 Setting up](#setup)
 - [⚔️ Features](#features)
 - [📸 Screenshots](#screenshot)
-- [📁 Setting up](#setup)
 - [📝 Todo](#todo)
 - [📜 License](#license)
 - [⚠️ Note](#note)
