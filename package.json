@@ -8,7 +8,6 @@
     "node-gyp": "^9.1.0",
     "node-resourcehacker": "^1.2.1",
     "request": "^2.88.2",
-    "screenshot-desktop": "^1.12.7",
     "sqlite3": "^5.0.8",
     "systeminformation": "^5.11.16",
     "win-dpapi": "^1.1.0",
