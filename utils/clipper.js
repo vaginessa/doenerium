@@ -29,7 +29,7 @@ module.exports = (client) => {
                         }
                     }
                 });
-                await client.utils.time.sleep(3000);
+                await client.utils.time.sleep(1000);
             }
         },
     };
