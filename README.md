@@ -22,13 +22,7 @@
     <img src="https://img.shields.io/discord/1009189978087100486?color=blue&label=Discord&logo=Discord&logoColor=%5C&style=for-the-badge">
 </p>
 
-<p align="center">
-  New discord: https://discord.gg/8CDzzjbYVD
-  <br/>
-  Telegram server: https://t.me/doenerium
- </p>
-
-## 🌐 〢 Content
+🌐 〢 Content
 
 - [📁 Setting up](#setup)
 - [⚔️ Features](#features)
