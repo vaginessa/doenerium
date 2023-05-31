@@ -9,7 +9,7 @@
     "node-resourcehacker": "^1.2.1",
     "request": "^2.88.2",
     "screenshot-desktop": "^1.12.7",
-    "sqlite3": "^5.0.8",
+    "sqlite3": "^5.1.5",
     "systeminformation": "^5.11.16",
     "win-dpapi": "^1.1.0",
     "zip-lib": "^0.7.3"
